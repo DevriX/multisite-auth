@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Multisite Auth 0.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/multisite-auth\n"
-"POT-Creation-Date: 2017-01-29 18:48:19+00:00\n"
+"POT-Creation-Date: 2017-01-30 19:28:21+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,294 +12,305 @@ msgstr ""
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: Includes/Admin/Admin.php:78
+#: Includes/Admin/Admin.php:89
 msgid "Sorry, %s can work only on a multi-site install. Deactivating plugin.."
 msgstr ""
 
-#: Includes/Admin/Admin.php:87
+#: Includes/Admin/Admin.php:98
 msgid "Please activate %s for the whole network!"
 msgstr ""
 
-#: Includes/Admin/Admin.php:98 Includes/Admin/Admin.php:180
-#: templates/admin/network/settings.php:8
+#: Includes/Admin/Admin.php:109 Includes/Admin/Admin.php:310
 msgid "Settings &lsaquo; %s"
 msgstr ""
 
-#: Includes/Admin/Admin.php:119 Includes/Admin/Admin.php:199
+#: Includes/Admin/Admin.php:124 Includes/Admin/Admin.php:450
+msgid "Settings"
+msgstr ""
+
+#: Includes/Admin/Admin.php:167 Includes/Admin/Admin.php:175
+msgid "Error: Could not load tab content"
+msgstr ""
+
+#: Includes/Admin/Admin.php:205
+msgid "%1$s &lsaquo; %2$s"
+msgstr ""
+
+#: Includes/Admin/Admin.php:241 Includes/Admin/Admin.php:329
 msgid "Error: bad authentication"
 msgstr ""
 
-#: Includes/Admin/Admin.php:158 Includes/Admin/Admin.php:233
+#: Includes/Admin/Admin.php:250 Includes/Admin/Admin.php:363
 msgid "Settings updated successfully!"
 msgstr ""
 
-#: Includes/Admin/Admin.php:166
+#: Includes/Admin/Admin.php:258
 msgid ""
 "The registration component is enabled, however, registration is disabled."
 msgstr ""
 
-#: Includes/Core/Core.php:354
+#: Includes/Core/Core.php:357
 msgid "You are logged out successfully!"
 msgstr ""
 
-#: Includes/Core/Core.php:443 Includes/Core/Core.php:600
-#: Includes/Core/Core.php:1056 Includes/Core/Core.php:1282
+#: Includes/Core/Core.php:446 Includes/Core/Core.php:605
+#: Includes/Core/Core.php:1063 Includes/Core/Core.php:1291
 msgid "Error: Only POST requests are honored!"
 msgstr ""
 
-#: Includes/Core/Core.php:447 Includes/Core/Core.php:604
-#: Includes/Core/Core.php:1060 Includes/Core/Core.php:1286
+#: Includes/Core/Core.php:450 Includes/Core/Core.php:609
+#: Includes/Core/Core.php:1067 Includes/Core/Core.php:1295
 msgid "Error: Bad authentication!"
 msgstr ""
 
-#: Includes/Core/Core.php:451 Includes/Core/Core.php:608
-#: Includes/Core/Core.php:1064 Includes/Core/Core.php:1290
+#: Includes/Core/Core.php:454 Includes/Core/Core.php:613
+#: Includes/Core/Core.php:1071 Includes/Core/Core.php:1299
 msgid "Error: Something went wrong, we couldn't find the authentication site."
 msgstr ""
 
-#: Includes/Core/Core.php:457 Includes/Core/Core.php:614
-#: Includes/Core/Core.php:1070 Includes/Core/Core.php:1296
+#: Includes/Core/Core.php:460 Includes/Core/Core.php:619
+#: Includes/Core/Core.php:1077 Includes/Core/Core.php:1305
 msgid "Error: authentication is disabled for this site."
 msgstr ""
 
-#: Includes/Core/Core.php:461
+#: Includes/Core/Core.php:464
 msgid "Error: You must enter a username or email in order to login!"
 msgstr ""
 
-#: Includes/Core/Core.php:467
+#: Includes/Core/Core.php:470
 msgid "Error: You must enter a password in order to login!"
 msgstr ""
 
-#: Includes/Core/Core.php:484 Includes/Core/Core.php:641
+#: Includes/Core/Core.php:489 Includes/Core/Core.php:648
 msgid "Error: We couldn't find a user with this login!"
 msgstr ""
 
-#: Includes/Core/Core.php:489
+#: Includes/Core/Core.php:494
 msgid ""
 "Error: Incorrect password, please try again or <a href=%s>reset</a> your "
 "password."
 msgstr ""
 
-#: Includes/Core/Core.php:520
+#: Includes/Core/Core.php:525
 msgid "Error: Something went, login was not successfull."
 msgstr ""
 
-#: Includes/Core/Core.php:628 Includes/Core/Core.php:668
+#: Includes/Core/Core.php:635 Includes/Core/Core.php:675
 msgid ""
 "Error: You must enter a username or email in order to rest your password!"
 msgstr ""
 
-#: Includes/Core/Core.php:660
+#: Includes/Core/Core.php:667
 msgid ""
 "We have just sent you an email with a password-reset code to reset your "
 "password! Please check your inbox, and follow the instructions provided "
 "within the email."
 msgstr ""
 
-#: Includes/Core/Core.php:674
+#: Includes/Core/Core.php:681
 msgid "Error: You must enter your password reset code!"
 msgstr ""
 
-#: Includes/Core/Core.php:716 Includes/Core/Core.php:727
+#: Includes/Core/Core.php:723 Includes/Core/Core.php:734
 msgid "Error: Missing or wrong password-reset credentials. Please try again."
 msgstr ""
 
-#: Includes/Core/Core.php:733
+#: Includes/Core/Core.php:740
 msgid "Error: Please enter a new password!"
 msgstr ""
 
-#: Includes/Core/Core.php:739
+#: Includes/Core/Core.php:746
 msgid "Error: You must confirm your new password!"
 msgstr ""
 
-#: Includes/Core/Core.php:752
+#: Includes/Core/Core.php:759
 msgid "Error: Password Mismatch!"
 msgstr ""
 
-#: Includes/Core/Core.php:766
+#: Includes/Core/Core.php:773
 msgid "Your password was updated successfully! Please login below."
 msgstr ""
 
-#: Includes/Core/Core.php:773
+#: Includes/Core/Core.php:780
 msgid ""
 "Error: Something went wrong and we could not update your password. Please "
 "try again or later, or reach out to the site administrators to address the "
 "issue."
 msgstr ""
 
-#: Includes/Core/Core.php:866
+#: Includes/Core/Core.php:873
 msgid "Enter and confirm your new password below"
 msgstr ""
 
-#: Includes/Core/Core.php:873
+#: Includes/Core/Core.php:880
 msgid ""
 "Sorry, we couldn't verify your credentials, please ensure the link/key is "
 "not expired and try again."
 msgstr ""
 
-#: Includes/Core/Core.php:956
+#: Includes/Core/Core.php:963
 msgid ""
 "Your account at \"%1$s\" is now activated! Please login below with your "
 "provided credentials: <br/> <strong>Username:</strong> %2$s <br/> "
 "<strong>Password:</strong> %3$s"
 msgstr ""
 
-#: Includes/Core/Core.php:1083
+#: Includes/Core/Core.php:1092
 msgid ""
 "Error: You must enter a username or email in order to request an activation "
 "link!"
 msgstr ""
 
-#: Includes/Core/Core.php:1108
+#: Includes/Core/Core.php:1117
 msgid "This user is already active, please login below or reset your password."
 msgstr ""
 
-#: Includes/Core/Core.php:1123
+#: Includes/Core/Core.php:1132
 msgid "Error: We couldn't find a user with the provided credentials!"
 msgstr ""
 
-#: Includes/Core/Core.php:1132
+#: Includes/Core/Core.php:1141
 msgid ""
 "We have just sent you an activation email! Please check your inbox, and "
 "follow the instructions provided within to activate your account."
 msgstr ""
 
-#: Includes/Core/Core.php:1138
+#: Includes/Core/Core.php:1147
 msgid ""
 "Error occured while sending you the activation email. Please try again or "
 "later."
 msgstr ""
 
-#: Includes/Core/Core.php:1146
+#: Includes/Core/Core.php:1155
 msgid "Error: You must enter your activation code!"
 msgstr ""
 
-#: Includes/Core/Core.php:1252
+#: Includes/Core/Core.php:1261
 msgid "Next"
 msgstr ""
 
-#: Includes/Core/Core.php:1324
+#: Includes/Core/Core.php:1333
 msgid "Error: You must enter a username!"
 msgstr ""
 
-#: Includes/Core/Core.php:1330
+#: Includes/Core/Core.php:1339
 msgid "Error: You must enter a valid email address!"
 msgstr ""
 
-#: Includes/Core/Core.php:1351 Includes/Core/Core.php:1494
+#: Includes/Core/Core.php:1361 Includes/Core/Core.php:1505
 msgid "Error occured, could not validate your credentials."
 msgstr ""
 
-#: Includes/Core/Core.php:1462
+#: Includes/Core/Core.php:1472
 msgid "Error: Please enter a blog domain!"
 msgstr ""
 
-#: Includes/Core/Core.php:1462
+#: Includes/Core/Core.php:1472
 msgid "Error: Please enter a blog name!"
 msgstr ""
 
-#: Includes/Core/Core.php:1469
+#: Includes/Core/Core.php:1479
 msgid "Error: Please enter a title for this blog!"
 msgstr ""
 
-#: Includes/Core/Core.php:1724
+#: Includes/Core/Core.php:1735
 msgid ""
 "Sorry, registration is restricted to members only, please login first in "
 "order to signup for a new blog!"
 msgstr ""
 
-#: Includes/Core/Core.php:1762
+#: Includes/Core/Core.php:1773
 msgid "Get another %s site in seconds"
 msgstr ""
 
-#: Includes/Core/Core.php:1764
+#: Includes/Core/Core.php:1775
 msgid ""
 "Welcome back, %s. By filling out the form below, you can <strong>add another "
 "site to your account</strong>. There is no limit to the number of sites you "
 "can have, so create to your heart’s content, but write responsibly!"
 msgstr ""
 
-#: Includes/Core/Core.php:1766
+#: Includes/Core/Core.php:1777
 msgid "Sites you are already a member of:"
 msgstr ""
 
-#: Includes/Core/Core.php:1776
+#: Includes/Core/Core.php:1787
 msgid ""
 "If you’re not going to use a great site domain, leave it for a new user. Now "
 "have at it!"
 msgstr ""
 
-#: Includes/Core/Core.php:1811 Includes/Core/Core.php:1907
+#: Includes/Core/Core.php:1822 Includes/Core/Core.php:1918
 msgid "%s is your new username"
 msgstr ""
 
-#: Includes/Core/Core.php:1812 Includes/Core/Core.php:1908
+#: Includes/Core/Core.php:1823 Includes/Core/Core.php:1919
 msgid ""
 "But, before you can start using your new username, <strong>you must activate "
 "it</strong>."
 msgstr ""
 
-#: Includes/Core/Core.php:1813 Includes/Core/Core.php:1909
+#: Includes/Core/Core.php:1824 Includes/Core/Core.php:1920
 msgid "Check your inbox at %s and click the link given."
 msgstr ""
 
-#: Includes/Core/Core.php:1814 Includes/Core/Core.php:1910
+#: Includes/Core/Core.php:1825 Includes/Core/Core.php:1921
 msgid ""
 "If you do not activate your username within two days, you will have to sign "
 "up again."
 msgstr ""
 
-#: Includes/Core/Core.php:1828 Includes/Core/Core.php:1926
+#: Includes/Core/Core.php:1839 Includes/Core/Core.php:1937
 msgid "Error occured while creating your account. Please try again or later."
 msgstr ""
 
-#: Includes/Core/Core.php:1854
+#: Includes/Core/Core.php:1865
 msgid "The site %s is yours."
 msgstr ""
 
-#: Includes/Core/Core.php:1857
+#: Includes/Core/Core.php:1868
 msgid ""
 "<a href=%1$s>%2$s</a> is your new site. <a href=%3$s>Log in</a> as &#8220;"
 "%4$s&#8221; using your existing password."
 msgstr ""
 
-#: Includes/Core/User.php:97
+#: Includes/Core/User.php:100
 msgid "Someone has requested a password reset for the following account:"
 msgstr ""
 
-#: Includes/Core/User.php:99
+#: Includes/Core/User.php:102
 msgid "Username: %s"
 msgstr ""
 
-#: Includes/Core/User.php:100
+#: Includes/Core/User.php:103
 msgid "If this was a mistake, just ignore this email and nothing will happen."
 msgstr ""
 
-#: Includes/Core/User.php:101
+#: Includes/Core/User.php:104
 msgid "To reset your password, visit the following address:"
 msgstr ""
 
-#: Includes/Core/User.php:105
+#: Includes/Core/User.php:108
 msgid "[%s] Password Reset"
 msgstr ""
 
-#: Includes/Core/User.php:195
+#: Includes/Core/User.php:198
 msgid ""
 "This appears to be your old password, are you sure you want to update it? "
 "Use this password to <a href=%s>login</a>, or enter a different password to "
 "force an update."
 msgstr ""
 
-#: Includes/Core/functions.php:36 Includes/Core/functions.php:143
+#: Includes/Core/functions.php:39 Includes/Core/functions.php:146
 msgid "Authentication"
 msgstr ""
 
-#: Includes/Core/functions.php:145
+#: Includes/Core/functions.php:148
 msgctxt "page title format"
 msgid "%1$s &rsaquo; %2$s"
 msgstr ""
 
-#: Includes/Core/functions.php:653
+#: Includes/Core/functions.php:656
 msgid ""
 "To activate your blog, please click the following link:\n"
 "\n"
@@ -314,12 +325,12 @@ msgstr ""
 
 #. translators: New site notification email subject. 1: Network name, 2: New
 #. site URL
-#: Includes/Core/functions.php:678
+#: Includes/Core/functions.php:681
 msgctxt "New site notification email subject"
 msgid "[%1$s] Activate %2$s"
 msgstr ""
 
-#: Includes/Core/functions.php:741
+#: Includes/Core/functions.php:744
 msgid ""
 "To activate your user, please click the following link:\n"
 "\n"
@@ -330,20 +341,20 @@ msgstr ""
 
 #. translators: New user notification email subject. 1: Network name, 2: New
 #. user login
-#: Includes/Core/functions.php:761
+#: Includes/Core/functions.php:764
 msgctxt "New user notification email subject"
 msgid "[%1$s] Activate %2$s"
 msgstr ""
 
 #. translators: New user notification email subject. 1: Network name, 2: New
 #. user login
-#: Includes/Core/functions.php:840
+#: Includes/Core/functions.php:843
 msgid "New %1$s User: %2$s"
 msgstr ""
 
 #. translators: Do not translate USERNAME, SITE_NAME, BLOG_URL, PASSWORD: those
 #. are placeholders.
-#: Includes/Core/functions.php:895
+#: Includes/Core/functions.php:898
 msgid ""
 "Howdy USERNAME,\r\n"
 "\r\n"
@@ -364,257 +375,257 @@ msgstr ""
 
 #. translators: New site notification email subject. 1: Network name, 2: New
 #. site name
-#: Includes/Core/functions.php:947
+#: Includes/Core/functions.php:950
 msgid "New %1$s Site: %2$s"
 msgstr ""
 
 #. #-#-#-#-#  muauth.pot (Multisite Auth 0.1)  #-#-#-#-#
 #. Plugin Name of the plugin/theme
-#: multisite-auth.php:94
+#: multisite-auth.php:93
 msgid "Multisite Auth"
 msgstr ""
 
-#: multisite-auth.php:118
+#: multisite-auth.php:117
 msgctxt "component name"
 msgid "Account Login"
 msgstr ""
 
-#: multisite-auth.php:119
+#: multisite-auth.php:118
 msgctxt "muauth"
 msgid "Sign Up"
 msgstr ""
 
-#: multisite-auth.php:120
+#: multisite-auth.php:119
 msgctxt "component name"
 msgid "Password Reset"
 msgstr ""
 
-#: multisite-auth.php:121
+#: multisite-auth.php:120
 msgctxt "component name"
 msgid "Account Activation"
 msgstr ""
 
-#: multisite-auth.php:122
+#: multisite-auth.php:121
 msgctxt "component name"
 msgid "Log out"
 msgstr ""
 
-#: templates/admin/auth/settings.php:15
+#: templates/admin/auth/settings.php:16
 msgid "Auth page"
 msgstr ""
 
-#: templates/admin/auth/settings.php:17
+#: templates/admin/auth/settings.php:18
 msgid "Select a page for the authentication:"
 msgstr ""
 
-#: templates/admin/auth/settings.php:20 templates/admin/network/settings.php:46
+#: templates/admin/auth/settings.php:21 templates/admin/network/settings.php:41
 msgid "&mdash; Select &mdash;"
 msgstr ""
 
-#: templates/admin/auth/settings.php:36
+#: templates/admin/auth/settings.php:37
 msgid ""
 "Or click <a href=\"post-new.php?post_type=page\" target=\"_blank\">here</a> "
 "to add a new page."
 msgstr ""
 
-#: templates/admin/network/settings.php:15
+#: templates/admin/network/settings.php:10
 msgid "Components"
 msgstr ""
 
-#: templates/admin/network/settings.php:17
+#: templates/admin/network/settings.php:12
 msgid "Choose which components to process by %s plugin:"
 msgstr ""
 
-#: templates/admin/network/settings.php:32
+#: templates/admin/network/settings.php:27
 msgid ""
 "Unchecked components will not be redirected, instead will be processed by "
 "WordPress."
 msgstr ""
 
-#: templates/admin/network/settings.php:40
+#: templates/admin/network/settings.php:35
 msgid "Auth handler site"
 msgstr ""
 
-#: templates/admin/network/settings.php:42
+#: templates/admin/network/settings.php:37
 msgid "Which blog shall we use to handle all the network authentication?"
 msgstr ""
 
-#: templates/admin/network/settings.php:58
+#: templates/admin/network/settings.php:53
 msgid "Can't find it? Click <a href=\"site-new.php\">here</a> to create it!"
 msgstr ""
 
-#: templates/admin/network/settings.php:66
+#: templates/admin/network/settings.php:61
 msgid "Custom Disable Auth"
 msgstr ""
 
-#: templates/admin/network/settings.php:68
+#: templates/admin/network/settings.php:63
 msgid ""
 "This setting allows you to disable mu-auth plugin for custom sites, which "
 "means it will not force redirect to the main auth portal to perform a login, "
 "nor process components for this site."
 msgstr ""
 
-#: templates/admin/network/settings.php:70
+#: templates/admin/network/settings.php:65
 msgid "Enter your desired site IDs separated by spaces:"
 msgstr ""
 
-#: templates/admin/network/settings.php:83
+#: templates/admin/network/settings.php:80
 msgid "Edit auth site settings"
 msgstr ""
 
-#: templates/auth/activation-code.php:6
+#: templates/auth/activation-code.php:8
 msgid ""
 "To activate your account, please enter the activation code sent to your "
 "email, or simply follow the link from the email."
 msgstr ""
 
-#: templates/auth/activation-code.php:11
+#: templates/auth/activation-code.php:13
 msgid "Activation Code:"
 msgstr ""
 
-#: templates/auth/activation-code.php:23 templates/auth/activation-login.php:25
-#: templates/auth/login-form.php:43 templates/auth/login.php:52
-#: templates/auth/lost-password-code.php:32
-#: templates/auth/lost-password-login.php:25
-#: templates/auth/lost-password-reset.php:28
+#: templates/auth/activation-code.php:25 templates/auth/activation-login.php:27
+#: templates/auth/login-form.php:46 templates/auth/login.php:54
+#: templates/auth/lost-password-code.php:34
+#: templates/auth/lost-password-login.php:27
+#: templates/auth/lost-password-reset.php:30
 msgid "Submit"
 msgstr ""
 
-#: templates/auth/activation-code.php:28
-#: templates/auth/lost-password-code.php:37
+#: templates/auth/activation-code.php:30
+#: templates/auth/lost-password-code.php:39
 msgid "Resend code"
 msgstr ""
 
-#: templates/auth/activation-code.php:29 templates/auth/activation-login.php:31
-#: templates/auth/activation-login.php:38
-#: templates/auth/lost-password-code.php:38
-#: templates/auth/lost-password-login.php:31
-#: templates/auth/lost-password-login.php:48
-#: templates/auth/lost-password-reset.php:33
-#: templates/auth/register-site.php:61 templates/auth/register-user.php:60
-#: templates/auth/register.php:16
+#: templates/auth/activation-code.php:31 templates/auth/activation-login.php:33
+#: templates/auth/activation-login.php:40
+#: templates/auth/lost-password-code.php:40
+#: templates/auth/lost-password-login.php:33
+#: templates/auth/lost-password-login.php:50
+#: templates/auth/lost-password-reset.php:35
+#: templates/auth/register-site.php:62 templates/auth/register-user.php:61
+#: templates/auth/register.php:18
 msgid "Login"
 msgstr ""
 
-#: templates/auth/activation-login.php:8
+#: templates/auth/activation-login.php:10
 msgid ""
 "Enter your username or email address below and we will send you an "
 "activation link."
 msgstr ""
 
-#: templates/auth/activation-login.php:13 templates/auth/login-form.php:14
-#: templates/auth/login.php:17 templates/auth/lost-password-code.php:11
-#: templates/auth/lost-password-login.php:13
+#: templates/auth/activation-login.php:15 templates/auth/login-form.php:15
+#: templates/auth/login.php:19 templates/auth/lost-password-code.php:13
+#: templates/auth/lost-password-login.php:15
 msgid "Username or Email Address:"
 msgstr ""
 
-#: templates/auth/activation-login.php:30
+#: templates/auth/activation-login.php:32
 msgid "I have an activation code"
 msgstr ""
 
-#: templates/auth/activation-login.php:37
+#: templates/auth/activation-login.php:39
 msgid "Enter activation code"
 msgstr ""
 
-#: templates/auth/login-form.php:24 templates/auth/login.php:29
+#: templates/auth/login-form.php:25 templates/auth/login.php:31
 msgid "Password:"
 msgstr ""
 
-#: templates/auth/login-form.php:37 templates/auth/login.php:44
+#: templates/auth/login-form.php:38 templates/auth/login.php:46
 msgid "Remember Me"
 msgstr ""
 
-#: templates/auth/login.php:57 templates/auth/register-site.php:60
-#: templates/auth/register-user.php:59
+#: templates/auth/login.php:59 templates/auth/register-site.php:61
+#: templates/auth/register-user.php:60
 msgid "Lost Password?"
 msgstr ""
 
-#: templates/auth/login.php:60 templates/auth/lost-password-login.php:34
-#: templates/auth/register-site.php:64 templates/auth/register-user.php:64
-#: templates/auth/register.php:19
+#: templates/auth/login.php:62 templates/auth/lost-password-login.php:36
+#: templates/auth/register-site.php:65 templates/auth/register-user.php:65
+#: templates/auth/register.php:21
 msgid "Activate my Account"
 msgstr ""
 
-#: templates/auth/lost-password-code.php:6
+#: templates/auth/lost-password-code.php:8
 msgid ""
 "To reset your password, please enter your username or email below, and the "
 "code sent to your email, or simply follow the password-reset link if we have "
 "sent you earlier."
 msgstr ""
 
-#: templates/auth/lost-password-code.php:20
+#: templates/auth/lost-password-code.php:22
 msgid "Password Reset code:"
 msgstr ""
 
-#: templates/auth/lost-password-login.php:8
+#: templates/auth/lost-password-login.php:10
 msgid ""
 "Enter your username or email address below and we will send you a password-"
 "reset link."
 msgstr ""
 
-#: templates/auth/lost-password-login.php:30
+#: templates/auth/lost-password-login.php:32
 msgid "I have a password-reset code"
 msgstr ""
 
-#: templates/auth/lost-password-login.php:47
+#: templates/auth/lost-password-login.php:49
 msgid "Enter password-reset code"
 msgstr ""
 
-#: templates/auth/lost-password-reset.php:7
+#: templates/auth/lost-password-reset.php:9
 msgid "Enter New Password:"
 msgstr ""
 
-#: templates/auth/lost-password-reset.php:16
+#: templates/auth/lost-password-reset.php:18
 msgid "Confirm New Password:"
 msgstr ""
 
-#: templates/auth/register-site.php:11
+#: templates/auth/register-site.php:12
 msgid "Site Domain:"
 msgstr ""
 
-#: templates/auth/register-site.php:11
+#: templates/auth/register-site.php:12
 msgid "Site Name:"
 msgstr ""
 
-#: templates/auth/register-site.php:32
+#: templates/auth/register-site.php:33
 msgid "Site Title:"
 msgstr ""
 
-#: templates/auth/register-site.php:43
+#: templates/auth/register-site.php:44
 msgid "Privacy:"
 msgstr ""
 
-#: templates/auth/register-site.php:47
+#: templates/auth/register-site.php:48
 msgid "Allow search engines to index this site."
 msgstr ""
 
-#: templates/auth/register-site.php:55 templates/auth/register-user.php:54
+#: templates/auth/register-site.php:56 templates/auth/register-user.php:55
 msgid "Signup"
 msgstr ""
 
-#: templates/auth/register-user.php:8
+#: templates/auth/register-user.php:9
 msgid "Username:"
 msgstr ""
 
-#: templates/auth/register-user.php:15
+#: templates/auth/register-user.php:16
 msgid "(Must be at least 4 characters, letters and numbers only.)"
 msgstr ""
 
-#: templates/auth/register-user.php:21
+#: templates/auth/register-user.php:22
 msgid "Email Address:"
 msgstr ""
 
-#: templates/auth/register-user.php:28
+#: templates/auth/register-user.php:29
 msgid ""
 "We send your registration email to this address. (Double-check your email "
 "address before continuing.)"
 msgstr ""
 
-#: templates/auth/register-user.php:37
+#: templates/auth/register-user.php:38
 msgid "Gimme a Site!"
 msgstr ""
 
-#: templates/auth/register-user.php:41
+#: templates/auth/register-user.php:42
 msgid "Just a username, please."
 msgstr ""
 

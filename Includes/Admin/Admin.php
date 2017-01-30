@@ -17,6 +17,9 @@ class Admin
     /** Class instance **/
     protected static $instance = null;
 
+    /** tabs **/
+    static $tabs = null, $tab = null;
+
     /** Get Class instance **/
     public static function instance()
     {
@@ -58,7 +61,7 @@ class Admin
             add_action( 'network_admin_menu', array( $ins, 'genereatePage' ) );
             // manage settings
             if ( 'settings.php' === $ins->pageNow && 'mu-auth' === $ins->page ) {
-                add_action( 'network_admin_menu', array( $ins, 'updateNetworkSettings' ) );
+                add_action( 'network_admin_menu', array( $ins, 'updateSettings' ) );
             }
         } else if ( $muauth->is_auth_blog ) { // current blog is the auth site
             // admin pages
@@ -72,6 +75,9 @@ class Admin
         add_action( ($muauth->is_main_site ? 'network_' : '') . 'admin_menu', array( $ins, 'superAdminNotices' ) );
         // plugin links
         add_filter( 'network_admin_plugin_action_links_' . plugin_basename(MUAUTH_FILE), array( $ins, 'pluginLinks' ));
+
+        // setup tabs
+        self::setupTabs();
     }
 
     public static function multisiteCheck()
@@ -104,16 +110,127 @@ class Admin
             MUAUTH_NAME,
             'manage_options',
             'mu-auth',
-            array(self::instance(), "networkSettingsScreen")
+            array(self::instance(), "networkScreen")
         );
+    }
+
+    public static function setupTabs()
+    {
+        $ins = self::instance();
+
+        self::$tabs = array(
+            'settings' => array(
+                'contentCallback' => array($ins, 'networkSettingsScreen'),
+                'title' => __('Settings', MUAUTH_DOMAIN),
+                'updateCallbak' => array($ins, 'updateNetworkSettings')
+            )
+        );
+
+        self::$tabs = apply_filters('muauth_network_settings_tabs', self::$tabs);
+
+        return $ins;
+    }
+
+    public static function setCurrentTab()
+    {
+        $ins = self::instance();
+
+        if ( isset( $_GET['tab'] ) && trim($_GET['tab']) ) {
+            self::$tab = esc_attr($_GET['tab']);
+        } else {
+            self::$tab = 'settings';
+        }
+
+        if ( !is_array(self::$tabs) || !isset(self::$tabs[self::$tab]) ) {
+            self::$tab = 'settings';
+        }
+
+        foreach ( self::$tabs as $name=>$tab ) {
+            if ( $name === self::$tab ) {
+                self::$tab = $tab;
+            }
+        }
+
+        return $ins;
+    }
+
+    public static function loadTabContent()
+    {
+        $ins = self::instance();
+
+        if ( isset(self::$tab) && is_array(self::$tab) ) {
+            $callback = isset(self::$tab['contentCallback']) ? self::$tab['contentCallback'] : null;
+
+            if ( !is_callable($callback) ) {
+                self::feedback(array(
+                    'success' => false,
+                    'message' => __('Error: Could not load tab content', MUAUTH_DOMAIN)
+                ));
+            } else {
+                call_user_func($callback);
+            }
+        } else {
+            self::feedback(array(
+                'success' => false,
+                'message' => __('Error: Could not load tab content', MUAUTH_DOMAIN)
+            ));
+        }
+
+        return $ins;
+    }
+
+    public static function updateTabSettings()
+    {
+        $ins = self::instance();
+
+        if ( isset(self::$tab) && is_array(self::$tab) ) {
+            $callback = isset(self::$tab['updateCallbak']) ? self::$tab['updateCallbak'] : null;
+
+            if ( is_callable($callback) ) {
+                call_user_func($callback);
+            }
+        }
+
+        return $ins;
+    }
+
+    public static function networkScreen()
+    {
+        self::setCurrentTab();
+        ?>
+
+        <div class="wrap">
+
+        <?php if ( self::$tab && !empty( self::$tab['title'] ) ) : ?>
+            <h2><?php printf( __('%1$s &lsaquo; %2$s', MUAUTH_DOMAIN), self::$tab['title'], MUAUTH_NAME ); ?></h2>
+        <?php endif; ?>
+
+        <h2 class="nav-tab-wrapper">
+            <?php foreach ( self::$tabs as $name=>$tab ) : ?>
+                <a 
+                    class="nav-tab<?php echo $tab == self::$tab ?" nav-tab-active":"";?>"
+                    href="settings.php?page=mu-auth<?php echo $name && 'settings' !== $name ? "&tab={$name}" : ''; ?>"
+                >
+                    <span><?php echo esc_attr($tab['title']); ?></span>
+                </a>
+            <?php endforeach; ?>
+        </h2>
+
+        <?php self::loadTabContent(); ?>
+
+        </div>
+
+        <?php
+
+        return self::instance();
     }
 
     public static function networkSettingsScreen()
     {
-        MUAUTH::loadTemplate('admin/network/settings.php'); 
+        MUAUTH::loadTemplate('admin/network/settings.php');
     }
 
-    public static function updateNetworkSettings()
+    public static function updateSettings()
     {
         global $muauth;
 
@@ -124,47 +241,14 @@ class Admin
                     'message' => __('Error: bad authentication', MUAUTH_DOMAIN)
                 ));
             } else {
-                if ( isset( $_POST['components'] ) && is_array($_POST['components']) ) {
+                // call
+                self::setCurrentTab()->updateTabSettings();
 
-                    $_POST['components'] = array_map('strval', $_POST['components']);
-                    $_POST['components'] = array_filter($_POST['components'], 'trim');
-
-                    if ( $_POST['components'] ) {
-                        update_site_option( 'muauth_components', (array) $_POST['components'] );
-                        // update global data
-                        $muauth->components = (array) $_POST['components'];
-                    } else {
-                        update_site_option('muauth_components', array());
-                        // update global data
-                        $muauth->components = array();
-                    }
-
-                } else {
-                    update_site_option('muauth_components', array());
-                    // update global data
-                    $muauth->components = array();
-                }
-
-                if ( isset( $_POST['auth_blog'] ) && intval( $_POST['auth_blog'] ) ) {
-                    update_site_option( 'muauth_auth_blog_id', (int) $_POST['auth_blog'] );
-                    // update global data
-                    $muauth->auth_blog_id = (int) $_POST['auth_blog'];
-                } else {
-                    delete_site_option( 'muauth_auth_blog_id' );
-                    // update global data
-                    $muauth->auth_blog_id = 0;
-                }
-
-                if ( isset($_POST['custom_disable']) )
-                    muauth_set_disabled_sites_ids( $_POST['custom_disable'], true );
-
+                // feedback
                 self::feedback(array(
                     'success' => true,
                     'message' => __('Settings updated successfully!', MUAUTH_DOMAIN)
                 ));
-
-                // trigger hook
-                do_action('muauth_update_network_settings');
             }
         }
 
@@ -174,6 +258,44 @@ class Admin
                 'message' => __('The registration component is enabled, however, registration is disabled.', MUAUTH_DOMAIN)
             ));
         }
+    }
+
+    public static function updateNetworkSettings() {
+        global $muauth;
+
+        if ( isset( $_POST['components'] ) && is_array($_POST['components']) ) {
+
+            $_POST['components'] = array_map('strval', $_POST['components']);
+            $_POST['components'] = array_filter($_POST['components'], 'trim');
+
+            if ( $_POST['components'] ) {
+                update_site_option( 'muauth_components', (array) $_POST['components'] );
+                // update global data
+                $muauth->components = (array) $_POST['components'];
+            } else {
+                update_site_option('muauth_components', array());
+                // update global data
+                $muauth->components = array();
+            }
+
+        } else {
+            update_site_option('muauth_components', array());
+            // update global data
+            $muauth->components = array();
+        }
+
+        if ( isset( $_POST['auth_blog'] ) && intval( $_POST['auth_blog'] ) ) {
+            update_site_option( 'muauth_auth_blog_id', (int) $_POST['auth_blog'] );
+            // update global data
+            $muauth->auth_blog_id = (int) $_POST['auth_blog'];
+        } else {
+            delete_site_option( 'muauth_auth_blog_id' );
+            // update global data
+            $muauth->auth_blog_id = 0;
+        }
+
+        if ( isset($_POST['custom_disable']) )
+            muauth_set_disabled_sites_ids( $_POST['custom_disable'], true );
     }
 
     /** setup pages **/

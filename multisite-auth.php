@@ -4,7 +4,7 @@ Plugin Name: Multisite Auth
 Plugin URI: https://samelh.com/
 Description: All in one Multisite Auth handler
 Author: Samuel Elh
-Version: 0.1
+Version: 0.1.2
 Author URI: https://samelh.com
 Text Domain: muauth
 */
@@ -89,7 +89,7 @@ class MUAUTH
             "MUAUTH_FILE" => __FILE__,
             "MUAUTH_DIR" => plugin_dir_path(__FILE__),
             "MUAUTH_URL" => plugin_dir_url(__FILE__),
-            "MUAUTH_VER" => '0.1',
+            "MUAUTH_VER" => '0.1.2',
             "MUAUTH_NAME" => __('Multisite Auth', 'muauth'),
             "MUAUTH_BASE" => plugin_basename(__FILE__),
             "MUAUTH_DOMAIN" => 'muauth'
@@ -200,5 +200,4 @@ TODO:
 - widgets: login
 - addons: reCaptcha, google authenticator, mailchimp
 - uninstall hooks
-- add settings link
 */
