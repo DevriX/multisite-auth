@@ -1,0 +1,66 @@
+.muauth-errors {
+    display: block;
+}
+.muauth-errors li {
+    display: block;
+    list-style: none;
+    border: 1px solid #ddd;
+    margin: 5px 0 0;
+    overflow: hidden;
+    background: #fff;
+    padding: 1em;
+    clear: both;
+    position: relative;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+.muauth-form .form-section {}
+.muauth-form .form-section.has-errors {}
+.muauth-form .form-section.has-errors input {
+    border: 1px solid;
+}
+.muauth-form .form-section label {
+    display: block;
+}
+.muauth-form .form-section label.inline,
+.muauth-form .form-section input.site-name {
+    display: inline-block;
+}
+.muauth-form .form-section .inline-error {
+    display: table;
+}
+.muauth-form .form-section .inline-error.error {
+    color: #dc3232;
+}
+.muauth-form .form-section .inline-error.error {
+    color: #dc3232;
+}
+.muauth-form .form-section .inline-error.success {
+    color: #46b450;
+}
+.muauth-form .form-section .inline-error.warning,
+.muauth-form .form-section .inline-error.notice {
+    color: #f1ef78;
+}
+.muauth-errors .success {
+    border-color: #46b450;
+    background: rgba(70, 180, 80, 0.05);
+}
+.muauth-errors .warning,
+.muauth-errors .notice {
+    border-color: #f1ef78;
+    background: rgba(241, 239, 120, 0.13);
+}
+.muauth-errors .error {
+    background: rgba(220, 50, 50, 0.04);
+}
+.muauth-errors .error,
+.muauth-form .form-section.has-errors input {
+    border-color: #dc3232;
+}
+.muauth-form .form-section input.site-name {
+    width: 150px;
+}
+.muauth-form .form-section label.allow-index {
+    font-weight: normal;
+}
