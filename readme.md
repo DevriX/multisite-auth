@@ -15,6 +15,7 @@ Multisite Auth is a plugin you can use to handle all the authentication and acco
 ## Addons
 
 - <a href="https://github.com/elhardoum/muauth-recaptcha">Google reCaptcha</a> for handling spam.
+- <a href="https://github.com/elhardoum/muauth-mailchimp">MailChimp</a> to opt-in users to your mailing list(s) easily from signup forms.
 
 This plugin is recently released so we will be working on more addons and implementations as soon as possible.
 
