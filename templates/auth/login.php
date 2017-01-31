@@ -63,7 +63,7 @@ defined('ABSPATH') || exit('Direct access not allowed.' . PHP_EOL);
             <?php endif; ?>
             
             <?php if ( muauth_registration_on() ) : ?>
-                <li><a href="<?php echo muauth_get_register_url(null,$_auth_site->blog_id); ?>"><?php _e(sprintf('Sign up for a new account on "%s"',$_auth_site->blogname), MUAUTH_DOMAIN); ?></a></li>
+                <li><a href="<?php echo muauth_get_register_url(null,$_auth_site->blog_id); ?>"><?php printf(__('Sign up for a new account on "%s"', MUAUTH_DOMAIN), $_auth_site->blogname); ?></a></li>
             <?php endif; ?>
 
             <?php do_action( 'muauth_login_after_fields' ); ?>

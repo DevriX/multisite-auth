@@ -66,7 +66,7 @@ add_action('muauth_activation_form_data', array($core, 'parseCurrentComponentFie
 // email the user their newly generated password upon activation
 add_action('muauth_validate_activation_GET_success_pre_redirect', array($core, 'activationWelcome'), 10, 4);
 // handle user/site meta upon activation
-//add_action('muauth_validate_activation_GET_success', array($core, 'activationMeta'));
+add_action('muauth_validate_activation_GET_success', array($core, 'activationMeta'));
 
 /** register ==============**/
 

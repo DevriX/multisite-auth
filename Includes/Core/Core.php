@@ -1198,24 +1198,27 @@ class Core
 
     public static function activationMeta($activation)
     {
-        # ['user_id'=>?,'blog_id'=>?,'meta'=?]
+        $blog_id = isset($activation['blog_id']) ? $activation['blog_id'] : 0;
+        $user_id = isset($activation['user_id']) ? $activation['user_id'] : 0;
 
-        // if ( !empty( $activation['user_id'] ) ) {
-        //     $user_id = $activation['user_id'];
-        //     if ( isset($activation['muauth_umeta']) && $activation['muauth_umeta'] ) {
+        if ( $user_id && isset($activation['meta']) && $activation['meta'] ) {
+            if ( $blog_id ) {
+                $usermeta = isset($activation['meta']['muauth_umeta']) ? $activation['meta']['muauth_umeta'] : array();
+            } else {
+                $usermeta = $activation['meta'];
+            }
 
-        //         $usermeta = $activation['muauth_umeta'];
+            // trigger hook
+            do_action('muauth_activation_user_meta', $usermeta, $user_id, $blog_id);
 
-        //         if ( isset($usermeta['muauth_add_to_blog']) && $usermeta['muauth_add_to_blog'] ) {
-        //             add_user_to_blog(
-        //                 $usermeta['muauth_add_to_blog'],
-        //                 $user_id,
-        //                 apply_filters('muauth_activation_add_user_to_blog_default_role', 'subscriber', $user_id, $usermeta['muauth_add_to_blog'])
-        //             );
-        //         }
-
-        //     }
-        // }
+            if ( $usermeta ) {
+                foreach ( $usermeta as $key=>$value ) {
+                    if ( !apply_filters( "muauth_activation_meta_handled_{$key}", false, $value, $user_id ) ) {
+                        update_user_meta( $user_id, $key, $value );
+                    }
+                }
+            }
+        }
     }
 
     public static function activationWelcome($user_id, $password, $blog_id, $newblog)

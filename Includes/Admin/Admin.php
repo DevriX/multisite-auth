@@ -148,6 +148,7 @@ class Admin
         foreach ( self::$tabs as $name=>$tab ) {
             if ( $name === self::$tab ) {
                 self::$tab = $tab;
+                self::$tab['name'] = $name;
             }
         }
 
@@ -197,6 +198,7 @@ class Admin
     public static function networkScreen()
     {
         self::setCurrentTab();
+
         ?>
 
         <div class="wrap">
@@ -206,7 +208,7 @@ class Admin
         <?php endif; ?>
 
         <h2 class="nav-tab-wrapper">
-            <?php foreach ( self::$tabs as $name=>$tab ) : ?>
+            <?php foreach ( self::$tabs as $name=>$tab ) : $tab['name'] = $name; ?>
                 <a 
                     class="nav-tab<?php echo $tab == self::$tab ?" nav-tab-active":"";?>"
                     href="settings.php?page=mu-auth<?php echo $name && 'settings' !== $name ? "&tab={$name}" : ''; ?>"
@@ -232,6 +234,15 @@ class Admin
 
     public static function updateSettings()
     {
+        // set current tab
+        self::setCurrentTab();
+
+        if ( isset(self::$tab) && isset(self::$tab['name']) ) {
+            do_action('muauth_network_headers_' . self::$tab['name']);
+        }
+
+        do_action('muauth_network_headers', isset(self::$tab) ? self::$tab : new stdClass);
+
         global $muauth;
 
         if ( isset( $_POST['submit'] ) ) {
@@ -241,11 +252,8 @@ class Admin
                     'message' => __('Error: bad authentication', MUAUTH_DOMAIN)
                 ));
             } else {
-                // call
-                self::setCurrentTab()->updateTabSettings();
-
-                // feedback
-                self::feedback(array(
+                // call and feedback
+                self::updateTabSettings()->feedback(array(
                     'success' => true,
                     'message' => __('Settings updated successfully!', MUAUTH_DOMAIN)
                 ));
@@ -376,6 +384,8 @@ class Admin
             }
             $dp_admin_feedback[] = $new_response;
         }
+
+        return self::instance();
     }
 
     public static function uiFeedback()
@@ -398,6 +408,8 @@ class Admin
                 );
             }
         }
+
+        return self::instance();
     }
 
     public static function superAdminNotices()
