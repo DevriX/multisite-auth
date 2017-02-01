@@ -63,6 +63,8 @@ class Admin
             if ( 'settings.php' === $ins->pageNow && 'mu-auth' === $ins->page ) {
                 add_action( 'network_admin_menu', array( $ins, 'updateSettings' ) );
             }
+            // plugin meta links
+            add_filter( 'plugin_row_meta', array( $ins, 'pushRowLinks' ), 10, 2);
         } else if ( $muauth->is_auth_blog ) { // current blog is the auth site
             // admin pages
             add_action( 'admin_menu', array( $ins, 'setupAuthPages' ) );
@@ -74,7 +76,11 @@ class Admin
         // super admin alerts
         add_action( ($muauth->is_main_site ? 'network_' : '') . 'admin_menu', array( $ins, 'superAdminNotices' ) );
         // plugin links
-        add_filter( 'network_admin_plugin_action_links_' . plugin_basename(MUAUTH_FILE), array( $ins, 'pluginLinks' ));
+        add_filter( 'network_admin_plugin_action_links_' . MUAUTH_BASE, array( $ins, 'pluginLinks' ));
+        
+        if ( method_exists('\MUAUTH\Includes\Core\Shortcodes', 'adminInit') ) {
+            call_user_func(array('\MUAUTH\Includes\Core\Shortcodes', 'adminInit'));
+        }
 
         // setup tabs
         self::setupTabs();
@@ -103,10 +109,17 @@ class Admin
 
     /** netowrk setup pages **/
     public static function networkSetupPages()
-    {
+    {  
+        self::setCurrentTab();
+
+        if ( isset(self::$tab) && isset(self::$tab['title']) && self::$tab['title'] )
+            $tabTitle = self::$tab['title'];
+        else
+            $tabTitle = sprintf(__('Settings &lsaquo; %s', MUAUTH_DOMAIN), MUAUTH_NAME);
+
         return add_submenu_page(
             'settings.php',
-            sprintf(__('Settings &lsaquo; %s', MUAUTH_DOMAIN), MUAUTH_NAME),
+            $tabTitle,
             MUAUTH_NAME,
             'manage_options',
             'mu-auth',
@@ -465,4 +478,19 @@ class Admin
         ), $links);
     }
 
+    public static function pushRowLinks( $links, $file )
+    {
+        if ( $file == MUAUTH_BASE ) {
+            $c = array(
+                _x('Addons', 'plugin meta links', MUAUTH_DOMAIN) => 'https://git.io/vDmP4',
+                _x('Shortcodes', 'shortcodes admin', MUAUTH_DOMAIN) => network_admin_url('settings.php?page=mu-auth&tab=shortcodes'),
+                _x('Bug Report', 'plugin meta links', MUAUTH_DOMAIN) => 'https://git.io/vDmPO',
+            );
+            foreach ( $c as $t=>$l ) {
+                $c[$t] = '<a href="' . $l . '">' . $t . '</a>';
+            }
+            $links += $c;
+        }
+        return $links;
+    }
 }

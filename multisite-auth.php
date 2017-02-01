@@ -1,10 +1,10 @@
 <?php namespace MUAUTH;
 /*
 Plugin Name: Multisite Auth
-Plugin URI: https://samelh.com/
-Description: All in one Multisite Auth handler
+Plugin URI: https://github.com/elhardoum/multisite-auth
+Description: A multisite authentication plugin for handling logins, signups, password resets, activation account auth components all in one site
 Author: Samuel Elh
-Version: 0.1.2
+Version: 0.1.3
 Author URI: https://samelh.com
 Text Domain: muauth
 */

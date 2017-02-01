@@ -79,6 +79,13 @@ class Plugin
         // redirect class
         MUAUTH::autoload('MUAUTH\Includes\Core\Redirect');
 
+        // shortcodes class
+        MUAUTH::autoload('MUAUTH\Includes\Core\Shortcodes');
+
+        if ( method_exists('\MUAUTH\Includes\Core\Shortcodes', 'shortcodesInit') ) {
+            call_user_func(array('\MUAUTH\Includes\Core\Shortcodes', 'shortcodesInit'));
+        }
+
         // global settings
         global $muauth;
 

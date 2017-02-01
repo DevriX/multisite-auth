@@ -369,11 +369,7 @@ function muauth_get_login_url( $redirect_to='', $blog_id=0 ) {
     return apply_filters( 'muauth_get_login_url', $url, $redirect_to, $blog_id );
 }
 
-function muauth_get_register_url( $redirect_to='', $blog_id=0 ) {
-    if ( $redirect_to ) {
-        $redirect_to = esc_url( $redirect_to );
-    }
-
+function muauth_get_register_url( $deprecated='', $blog_id=0 ) {
     global $muauth;
     $url = '';
 
@@ -405,23 +401,13 @@ function muauth_get_register_url( $redirect_to='', $blog_id=0 ) {
 
         if ( $_blog_id ) {
             $url = sprintf($url_sample, apply_filters('muauth_pre_uri_append_auth_id', $_blog_id));
-
-            if ( $redirect_to ) {
-                $url = add_query_arg(array(
-                    'redirect_to' => urlencode($redirect_to)
-                ), $url);
-            }
         }
     }
 
-    return apply_filters( 'muauth_get_register_url', $url, $redirect_to, $blog_id );
+    return apply_filters( 'muauth_get_register_url', $url, $deprecated, $blog_id );
 }
 
-function muauth_get_lostpassword_url( $redirect_to='', $blog_id=0 ) {
-    if ( $redirect_to ) {
-        $redirect_to = esc_url( $redirect_to );
-    }
-
+function muauth_get_lostpassword_url( $deprecated='', $blog_id=0 ) {
     global $muauth;
     $url = '';
 
@@ -453,23 +439,13 @@ function muauth_get_lostpassword_url( $redirect_to='', $blog_id=0 ) {
 
         if ( $_blog_id ) {
             $url = sprintf($url_sample, apply_filters('muauth_pre_uri_append_auth_id', $_blog_id));
-
-            if ( $redirect_to ) {
-                $url = add_query_arg(array(
-                    'redirect_to' => urlencode($redirect_to)
-                ), $url);
-            }
         }
     }
 
-    return apply_filters( 'muauth_get_lostpassword_url', $url, $redirect_to, $blog_id );
+    return apply_filters( 'muauth_get_lostpassword_url', $url, $deprecated, $blog_id );
 }
 
-function muauth_get_activation_url( $redirect_to='', $blog_id=0 ) {
-    if ( $redirect_to ) {
-        $redirect_to = esc_url( $redirect_to );
-    }
-
+function muauth_get_activation_url( $deprecated='', $blog_id=0 ) {
     global $muauth;
     $url = '';
 
@@ -501,19 +477,13 @@ function muauth_get_activation_url( $redirect_to='', $blog_id=0 ) {
 
         if ( $_blog_id ) {
             $url = sprintf($url_sample, apply_filters('muauth_pre_uri_append_auth_id', $_blog_id));
-
-            if ( $redirect_to ) {
-                $url = add_query_arg(array(
-                    'redirect_to' => urlencode($redirect_to)
-                ), $url);
-            }
         }
     }
 
-    return apply_filters( 'muauth_get_activation_url', $url, $redirect_to, $blog_id );
+    return apply_filters( 'muauth_get_activation_url', $url, $deprecated, $blog_id );
 }
 
-function muauth_get_logout_url( $redirect_to='', $blog_id=0 ) {
+function muauth_get_logout_url($redirect_to='', $blog_id=0, $nonce=null) {
     if ( $redirect_to ) {
         $redirect_to = esc_url( $redirect_to );
     }
@@ -558,7 +528,11 @@ function muauth_get_logout_url( $redirect_to='', $blog_id=0 ) {
         }
     }
 
-    return apply_filters( 'muauth_get_logout_url', $url, $redirect_to, $blog_id );
+    if ( $nonce ) {
+        $url = add_query_arg('_wpnonce', wp_create_nonce('log-out'), $url);
+    }
+
+    return apply_filters( 'muauth_get_logout_url', $url, $redirect_to, $blog_id, $nonce );
 }
 
 function muauth_redirect($uri, $safe=false, $do=true) {

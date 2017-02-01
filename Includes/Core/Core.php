@@ -454,6 +454,8 @@ class Core
             return muauth_add_error( 'bad_request', __('Error: Something went wrong, we couldn\'t find the authentication site.', MUAUTH_DOMAIN), 'error' );
         }
 
+        ###
+
         $auth_site_id = (int) $_POST['auth_site'];
 
         if ( muauth_is_site_disabled( $auth_site_id ) ) {
@@ -577,6 +579,17 @@ class Core
         printf(
             '<input type="hidden" name="current_component" value="%s" />',
             muauth_get_current_component()
+        );
+
+        print(
+            '<input type="hidden" name="_doing_muauth" value="1" />'
+        );
+    }
+
+    public static function parseSimpleLoginCurrentComponentField()
+    {
+        print(
+            '<input type="hidden" name="current_component" value="login" />'
         );
 
         print(
@@ -1981,16 +1994,22 @@ class Core
 
     public static function logoutUrl($logout_url, $redirect)
     {
-        $logout_url = muauth_get_logout_url($redirect);
-        $logout_url = wp_nonce_url($logout_url, 'log-out');
-
-        return $logout_url;
+        return muauth_get_logout_url($redirect, null, true);
     }
 
     public static function parseQueryHandleLogout()
     {
         if ( !is_user_logged_in() ) {
-            return muauth_trigger_404();
+            if ( isset( $_REQUEST['redirect_to'] ) ) {
+                $redirect_to = esc_url( $_REQUEST['redirect_to'] );
+            } else if ( isset($auth_site->blog_id) && $auth_site->blog_id ) {
+                $redirect_to = add_query_arg('loggedout', 'true', get_home_url($auth_site->blog_id));
+            } else {
+                $redirect_to = add_query_arg('loggedout', 'true', site_url());
+            }
+
+            // call redirect
+            return muauth_redirect(apply_filters('muauth_pre_logout_redirect_to', $redirect_to));
         }
 
         if ( !MUAUTH::verifyNonce('_wpnonce', 'log-out') && apply_filters('muauth_force_nonce_on_logout', true) ) {

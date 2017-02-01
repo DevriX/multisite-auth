@@ -23,7 +23,7 @@ defined('ABSPATH') || exit('Direct access not allowed.' . PHP_EOL);
             <p class="form-section<?php echo muauth_has_errors('password', $args['unique_id']) ? ' has-errors' : ''; ?>">
                 <label for="password" style="display:flex">
                     <?php _e( 'Password:', MUAUTH_DOMAIN ); ?>
-                    <a href="<?php echo muauth_get_lostpassword_url(0,$_auth_site->blog_id); ?>" style="margin-left:auto">Forgot?</a>
+                    <a href="<?php echo muauth_get_lostpassword_url(0,$args['blog_id']); ?>" style="margin-left:auto">Forgot?</a>
                 </label>
                 <input type="password" name="password" id="password" tabindex="<?php muauth_tabindex(); ?>" />
 

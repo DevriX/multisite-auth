@@ -41,7 +41,7 @@ add_action('muauth_login_form', array($core, 'parseSimpleLoginTemplate'), 10, 3)
 // parse necessary data
 add_action('muauth_simple_login_form_data', array($core, 'parseSimpleLoginRequestQuery'));
 // parse current component field
-add_action('muauth_simple_login_form_data', array($core, 'parseCurrentComponentField'));
+add_action('muauth_simple_login_form_data', array($core, 'parseSimpleLoginCurrentComponentField'));
 
 // handle login data
 add_action('init_auth_blog', array($core, 'validatePost'), 11);
