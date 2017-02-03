@@ -64,23 +64,15 @@ class Plugin
         // class instance
         $ins = self::instance();
 
-        // autoload user class
-        MUAUTH::autoload('MUAUTH\Includes\Core\User');
-
-        // autoload filters class
-        MUAUTH::autoload('MUAUTH\Includes\Core\Core');
-
         // load filters
-        MUAUTH::autoload('MUAUTH\Includes\Core\filters');
+        require_once MUAUTH_DIR . (
+            sprintf('Includes%1$sCore%1$sfilters.php', DIRECTORY_SEPARATOR)
+        );
 
         // template functions
-        MUAUTH::autoload('MUAUTH\Includes\Core\template-functions');
-
-        // redirect class
-        MUAUTH::autoload('MUAUTH\Includes\Core\Redirect');
-
-        // shortcodes class
-        MUAUTH::autoload('MUAUTH\Includes\Core\Shortcodes');
+        require_once MUAUTH_DIR . (
+            sprintf('Includes%1$sCore%1$stemplate-functions.php', DIRECTORY_SEPARATOR)
+        );
 
         if ( method_exists('\MUAUTH\Includes\Core\Shortcodes', 'shortcodesInit') ) {
             call_user_func(array('\MUAUTH\Includes\Core\Shortcodes', 'shortcodesInit'));

@@ -32,7 +32,13 @@ Class VersionCompare
         if ( version_compare(PHP_VERSION, $this->min, '>=') ) {
             $this->hasRequiredPHP = true;
         } else {
-            add_action( "admin_notices", array( $this, "notice" ) );
+            $tag = 'admin_notices';
+
+            if ( is_multisite() && is_network_admin() ) {
+                $tag = "network_{$tag}";
+            }
+
+            add_action( $tag, array( $this, "notice" ) );
         }
     }
 
@@ -42,7 +48,7 @@ Class VersionCompare
     }
 }
 
-$muauthVersionCompare = new VersionCompare();
+$muauthVersionCompare = new VersionCompare;
 
 if ( !isset($muauthVersionCompare->hasRequiredPHP) || !$muauthVersionCompare->hasRequiredPHP ) {
     return; // no min server requirements
@@ -67,19 +73,13 @@ class MUAUTH
         return null == self::$instance ? new self : self::$instance;
     }
 
-    public static function init()
-    {
-        // include helpers
-        require_once MUAUTH_DIR . 'Includes/Core/functions.php';
-        // activation
-        register_activation_hook( __FILE__, array( self::instance(), "activation" ) );
-        // deactivation
-        register_deactivation_hook( __FILE__, array( self::instance(), "deactivation" ) );
-    }
-
     public function setup()
     {
-        return $this->setupConstants()->setupGlobals();
+        return $this
+            ->setupConstants()
+            ->setupGlobals()
+            ->registerAutoload()
+            ->loadHelpers();
     }
 
     /** define necessary constants **/
@@ -118,7 +118,7 @@ class MUAUTH
             'register' => _x('Sign Up', 'muauth'),
             'lost-password' => _x('Password Reset', 'component name', 'muauth'),
             'activation' => _x('Account Activation', 'component name', 'muauth'),
-            'logout' => _x('Log out', 'component name', 'muauth')
+            'logout' => _x('Log out', 'component name', 'muauth'),
         );
 
         $muauth_errors = (object) array(
@@ -128,11 +128,29 @@ class MUAUTH
         return $this;
     }
 
+    public function registerAutoload()
+    {
+        spl_autoload_register(array($this, 'autoload'));
+
+        return $this;
+    }
+
+    public function loadHelpers()
+    {
+        // include helpers
+        require_once MUAUTH_DIR . sprintf (
+            'Includes%1$sCore%1$sfunctions.php',
+            DIRECTORY_SEPARATOR
+        );
+
+        return $this;
+    }
+
     /** autoloader **/
-    public static function autoload( $class, $regular_file=null ) {
+    public function autoload($class) {
         $classFile = $class;
         // main parent namespace
-        $parentNamespace = 'MUAUTH';
+        $parentNamespace = __NAMESPACE__;
 
         if ( "\{$parentNamespace}\\" === substr( $classFile, 0, (strlen($parentNamespace)+2) ) ) {
             $classFile = substr( $classFile, (strlen($parentNamespace)+2) );
@@ -142,9 +160,9 @@ class MUAUTH
         }
 
         $classFile = MUAUTH_DIR."{$classFile}.php";
-        $classFile = str_replace( '\\', '/', $classFile );
+        $classFile = str_replace( '\\', DIRECTORY_SEPARATOR, $classFile );
 
-        if ( (!class_exists( $class ) || $regular_file) && file_exists($classFile) ) {
+        if ( !class_exists( $class ) && file_exists($classFile) ) {
             return require( $classFile );
         }
     }
@@ -155,16 +173,6 @@ class MUAUTH
             return;
         }
         return wp_verify_nonce($_REQUEST[$param], $action);
-    }
-
-    public static function activation()
-    {
-
-    }
-
-    public static function deactivation()
-    {
-
     }
 
     public static function loadTemplate($file)
@@ -180,17 +188,12 @@ class MUAUTH
 
 // init
 $MUAUTH = new MUAUTH;
-$MUAUTH->setup()->init();
-
-// load plugin
-$MUAUTH::autoload( 'MUAUTH\Includes\Core\Plugin' );
+$MUAUTH->setup();
 
 // init plugin
 Plugin::init();
 
 if ( is_admin() ) {
-    // load admin
-    $MUAUTH::autoload( 'MUAUTH\Includes\Admin\Admin' );
     // init admin
     Admin::init();
 }
