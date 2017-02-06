@@ -11,6 +11,8 @@ defined('ABSPATH') || exit('Direct access not allowed.' . PHP_EOL);
 
         <div class="muauth-form">
 
+            <?php do_action( 'muauth_login_form_before_login', $args ); ?>
+
             <p class="form-section<?php echo muauth_has_errors('login', $args['unique_id']) ? ' has-errors' : ''; ?>">
                 <label for="login"><?php _e( 'Username or Email Address:', MUAUTH_DOMAIN ); ?></label>
                 <input type="text" name="login" id="login" value="<?php muauth_old( 'login' ); ?>" tabindex="<?php muauth_tabindex(); ?>" />
@@ -19,6 +21,8 @@ defined('ABSPATH') || exit('Direct access not allowed.' . PHP_EOL);
                     <?php muauth_print_error( 'login', $args['unique_id'] ); ?>
                 <?php endif; ?>
             </p>
+
+            <?php do_action( 'muauth_login_form_before_password', $args ); ?>
 
             <p class="form-section<?php echo muauth_has_errors('password', $args['unique_id']) ? ' has-errors' : ''; ?>">
                 <label for="password" style="display:flex">
@@ -31,6 +35,8 @@ defined('ABSPATH') || exit('Direct access not allowed.' . PHP_EOL);
                     <?php muauth_print_error( 'password', $args['unique_id'] ); ?>
                 <?php endif; ?>
             </p>
+
+            <?php do_action( 'muauth_login_form_before_remember', $args ); ?>
 
             <p class="form-section">
                 <label for="remember">

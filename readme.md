@@ -17,6 +17,7 @@ Multisite Auth is a plugin you can use to handle all the authentication and acco
 - <a href="https://github.com/elhardoum/muauth-recaptcha">Google reCaptcha</a> for handling spam.
 - <a href="https://github.com/elhardoum/muauth-mailchimp">MailChimp</a> to opt-in users to your mailing list(s) easily from signup forms.
 - <a href="https://github.com/elhardoum/muauth-zero-spam">Zero Spam</a> to eliminate spam signups with no captchas or annoying tests.
+- <a href="https://github.com/elhardoum/muauth-google-authenticator">Google Authenticator</a> implementing Google Authenticator for your WordPress blog.
 
 This plugin is recently released so we will be working on more addons and implementations as soon as possible.
 

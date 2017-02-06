@@ -1140,11 +1140,14 @@ class Core
             if ( !User::isPending( $login ) ) {
                 do_action( 'muauth_validate_activation_1_404_pending', $login );
 
-                return muauth_redirect(muauth_get_activation_url('',$auth_site_id), 1, 0)->withNotice(array(
+                return muauth_add_error(
                     '404_user',
                     __('Error: We couldn\'t find a user with the provided credentials!', MUAUTH_DOMAIN),
                     'error'
-                ));
+                );
+
+                #troubleshooting
+                #muauth_redirect(muauth_get_activation_url('',$auth_site_id))
             }
 
             // now that the user is there, let's send them their key:
