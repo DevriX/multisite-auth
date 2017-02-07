@@ -4,7 +4,7 @@ Plugin Name: Multisite Auth
 Plugin URI: https://github.com/elhardoum/multisite-auth
 Description: A multisite authentication plugin for handling logins, signups, password resets, activation account auth components all in one site
 Author: Samuel Elh
-Version: 0.1.3
+Version: 0.1.4
 Author URI: https://samelh.com
 Text Domain: muauth
 */
